@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <title>Success</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container-fluid">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="">Hunters Intl</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <span class="navbar-text">
+                    <p class="navbar-text mr-4">Welcome {{user.first_name}}!</p>
+                </span>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/user_profile/{{user.id}}"><b>Home</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/success"><b>Posts</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/edit_pg/{{user.id}}"><b>Profile</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/logout"><b>Logout</b></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="wrapper">
+            <h1>Welcome {{user.first_name}} {{user.last_name}} to Hunter Intl!</h1>
+            {% if request.session.user_id %}
+            <p class='green'>You are now ready to start hunting.</p>
+            {% endif %}
+            
+        </div>
+        <div class="container p-4">
+            <div class="row">
+                <div class="col">
+                    <form action="/create_post" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>Reported Sightings</label>
+                            <p>Please include location of sighting.</p>
+                            <input type="text" name="message" class="form-control">
+                        </div>
+                        <button class="btn btn-primary">Post</button>
+                    </form>
+                    {% for post in user_posts reversed %}
+                    <div class="post">
+                        <p class="poster"><a href="/user_profile/{{post.poster.id}}">{{ post.poster.first_name }} {{post.poster.last_name }}</a></p>
+                        <p class="post">{{post.message}}</p>
+                        <p><a href="/like/{{post.id}}">Like</a> {{ post.likes.count }} <a href="/delete/{{post.id}}">Delete</a></p>
+                        <div class="comment">
+                            {% for comment in post.post_comments.all %}
+                            <p class="poster"><a href="/user_profile/{{comment.poster.id}}">{{ comment.poster.first_name }} {{comment.poster.last_name }}</a></p>
+                            <p>{{comment.comment}}</p>
+                            <p><a href="/like/{{post.id}}">Like</a> {{ post.likes.count }} <a href="/delete_comment/{{comment.id}}">Delete</a></p>
+                            {% endfor %}
+                            <form action="/add_comment/{{post.id}}" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label>Add Comment</label>
+                                    <input type="text" name="comment" class="form-control">
+                                    <button class="btn btn-primary">Add</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

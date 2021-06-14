@@ -1,4 +1,6 @@
+# from hunter_app.forms import MonsterForm
 from django.shortcuts import redirect, render
+from django.http import HttpResponse
 from django.contrib import messages
 from .models import *
 import bcrypt
@@ -68,6 +70,21 @@ def create_post(request):
     poster = User.objects.get(id=request.session['user_id'])
     User_Post.objects.create(message=message,poster=poster)
     return redirect('/success')
+
+# def upload(request):
+#     return render(request, 'image.html')
+# def monster_image(request):
+#     if request == 'POST':
+#         form = MonsterForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/monster_success')
+#         else:
+#             form = MonsterForm()
+#         return render(request, 'monster.html', {'form' : form})
+
+# def monster_success(request):
+#     return HttpResponse('Successfully Uploaded')
 
 def add_comment(request,id):
     user_post = User_Post.objects.get(id=id)

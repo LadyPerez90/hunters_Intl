@@ -37,9 +37,11 @@ class User(models.Model):
     confirm_pw = models.CharField(max_length=255)
     objects = UserManager()
 
-class Monster(models.Model):
-    type = models.CharField(max_length=100)
-    
+# class Document(models.Model):
+#     docfile = models.FileField(upload_to='Documents/VS/Assignments/back_coing/python_stack/django/hunters_Intl/hunter_app/static/image/%Y/%m/%d')
+#     user = models.ForeignKey(User, related_name='files', on_delete=models.CASCADE)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
 
 class User_Post(models.Model):
     message = models.CharField(max_length=500)

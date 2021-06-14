@@ -18,7 +18,7 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <span class="navbar-text">
-                    <p class="navbar-text mr-4">Welcome {{user.first_name}}!</p>
+                    <p class="navbar-text mr-4"></p>
                 </span>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
@@ -39,7 +39,7 @@
             </nav>
         </header>
         <div class="wrapper">
-            <h1>Hello {{user.first_name}} {{user.last_name}}</h1>
+            <h1>Hunter {{user.first_name}} {{user.last_name}}</h1>
 
             {% for post in user.user_posts.all %}
             <p>{{post.message}}</p>

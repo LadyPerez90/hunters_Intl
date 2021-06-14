@@ -4,19 +4,19 @@
     color: #4c2c44;
 }
 
-.wrapper {
-    display: block;
-    justify-content: center;
-    align-items: flex-start;
-    /* flex-direction: column; */
+.post {
+    padding: 1rem;
+    /* background-color: #d8d1caa8; */
 }
 
-/* .wrapper > p {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column; */
-/* } */
+.col {
+    padding: 1rem;
+    background-color: #d8d1caa8;
+}
+
+.wrapper {
+    background-color: #d8d1caa8;
+}
 
 .gender {
     text-transform: capitalize;
@@ -37,7 +37,7 @@ body {
 }
 
 .post a {
-    color: #c1c956;
+    color: #2f4556;
 }
 h1,
 h2,
@@ -47,8 +47,9 @@ h4 {
 }
 
 h1{
-    font-size: 5.4 rem;
-    color:#df2810;
+    font-size: 5 rem;
+    color:#4c2c44;
+    font-weight: bold;
     margin-bottom: 1rem;
 }
 
@@ -68,9 +69,16 @@ h3 {
     font-weight: 500;
 }
 
+label {
+    font-weight: bold;
+}
+
 .form-group {
-    color: #c12b12;
+    color: #4c2c44;
     font-size: 1.5rem;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 25px;
 }
 
 .form-group > p {
@@ -80,6 +88,7 @@ h3 {
 p {
     color: #c12b12;
     font-size: 1rem;
+    font-weight: bold;
 }
 /* Utilities*/
 
@@ -125,7 +134,7 @@ p {
 
 .btn {
     font-size: 1rem;
-    padding: 1rem 0;
+    padding: 1rem;
     width: 15rem;
     text-align: center;
     border: 0.1rem solid #4c2c44;

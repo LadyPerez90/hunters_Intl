@@ -15,4 +15,5 @@ urlpatterns = [
     path('edit/<int:id>', views.edit),
     path('delete/<int:id>', views.delete_post),
     path('delete_comment/<int:id>', views.delete_comment),
+    # path('upload', views.upload),
 ]
